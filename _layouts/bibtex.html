@@ -1,0 +1,38 @@
+---
+layout: default
+---
+<div class="post">
+  <!-- thanks: http://stackoverflow.com/a/1173319/1441112 -->
+  <script type="text/javascript">
+      function selectText(container) {
+          if (document.selection) {
+              var range = document.body.createTextRange();
+              range.moveToElementText(container);
+              range.select();
+          } else if (window.getSelection) {
+              var range = document.createRange();
+              range.selectNode(container);
+              window.getSelection().addRange(range);
+          }
+      }
+  </script>
+  <header class="post-header">
+    <h1 class="post-title">{{ page.entry.title }}</h1>
+    <h2>{% cite {{page.entry.key}} %}</h2>
+  </header>
+
+  <article class="post-content">
+    {% if page.entry.abstract %}
+    <h4>Abstract</h4>
+    <p>{{ page.entry.abstract }}</p>
+    {% endif %}
+
+    <h4>BibTex</h4>
+    <div id="bibtex" onClick="selectText(this)">
+      {% highlight latex %}
+        {{ page.entry.bibtex }}
+      {% endhighlight %}
+    </div>
+  </article>
+
+</div>

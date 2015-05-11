@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1 class="page-heading">blog posts</h1>
+
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%Y-%b-%d" }} ::</span>
+        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+
+  <h1 class="page-heading">journal publications</h1>
+
+  {% bibliography --file references -q @*[_type=journal]%}
+
+  <h1 class="page-heading">conference and workshop publications</h1>
+
+  {% bibliography --file references -q @*[_type=conference || _type=workshop]%}
+
+  <h1 class="page-heading">presentations, demos, etc.</h1>
+
+  {% bibliography --file references -q @*[_type=presentation || _type=demo || _type=other]%}
+
+
+</div>

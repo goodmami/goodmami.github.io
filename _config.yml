@@ -1,0 +1,31 @@
+# Site settings
+title: Michael Wayne Goodman
+email: goodman.m.w@gmail.com
+description: 'Ph.D. student of computational linguistics at the University of Washington.'
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://www.goodmami.org" # the base hostname & protocol for your site
+#twitter_username: jekyllrb
+github_username:  goodmami
+google_scholar_url: 'https://scholar.google.com/citations?user=04Hg4PAAAAAJ'
+acl_anthology_url: 'http://aclanthology.info/people/michael-wayne-goodman-19733'
+researchgate_url: 'https://www.researchgate.net/profile/Michael_Goodman5'
+
+top_links:
+  - ['GitHub', 'https://github.com/goodmami']
+  - ['Google Scholar', 'https://scholar.google.com/citations?user=04Hg4PAAAAAJ']
+  - ['Flickr', 'https://www.flickr.com/photos/goodmami/']
+
+# Build settings
+markdown: kramdown
+
+gems:
+  - jekyll-redirect-from
+  - 'jekyll/scholar'
+
+scholar:
+  sort_by: date
+  order: descending
+  details_link: ' (Details)'
+  bibtex_options:
+    parse_months: true
+  bibtex_skip_fields: ['abstract', 'month_numeric', '_type']
