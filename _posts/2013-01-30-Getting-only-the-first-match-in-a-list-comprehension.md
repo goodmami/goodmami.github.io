@@ -9,7 +9,7 @@ Using `next()` with a generator expression to simulate a `break`
 statement in a for loop. Something like this:
 
 {% highlight python %}
-val = next((x in some_list if match(x)), default_val)
+val = next((x for x in some_list if match(x)), default_val)
 {% endhighlight %}
 
 Which is the same as:
