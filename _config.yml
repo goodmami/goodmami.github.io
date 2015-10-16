@@ -21,6 +21,7 @@ markdown: kramdown
 gems:
   - jekyll-redirect-from
   - 'jekyll/scholar'
+  - jekyll-mentions
 
 scholar:
   sort_by: date
