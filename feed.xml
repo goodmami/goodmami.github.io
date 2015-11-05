@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Michael Wayne Goodman</title>
+    <description>Ph.D. student of computational linguistics at the University of Washington.</description>
+    <link>http://www.goodmami.org/</link>
+    <atom:link href="http://www.goodmami.org/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 04 Nov 2015 22:03:45 -0800</pubDate>
+    <lastBuildDate>Wed, 04 Nov 2015 22:03:45 -0800</lastBuildDate>
+    <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Python&#39;s XPath and Default Namespaces</title>
+        <description>&lt;p&gt;Python’s &lt;a href=&quot;https://docs.python.org/3/library/xml.etree.elementtree.html&quot;&gt;ElementTree&lt;/a&gt; is a great interface for XML documents, but it
+has terrible support for namespaces; you basically have to &lt;a href=&quot;http://effbot.org/zone/element-namespaces.htm&quot;&gt;do it
+yourself&lt;/a&gt;. ElementTree’s
+&lt;a href=&quot;http://www.w3.org/TR/xpath/&quot;&gt;XPath&lt;/a&gt; support (a subset called &lt;a href=&quot;https://docs.python.org/3/library/xml.etree.elementtree.html#elementtree-xpath&quot;&gt;ElementPath&lt;/a&gt;, although that name
+is not used publicly) will take a &lt;code&gt;namespaces&lt;/code&gt; argument with mapping of
+prefixes to URIs, but it does not handle default namespaces.&lt;/p&gt;
+
+&lt;p&gt;I had to do some digging, but apparently the XPath designers &lt;a href=&quot;https://lists.w3.org/Archives/Public/www-dom/2002JulSep/0159.html&quot;&gt;didn’t
+consider default
+namespaces&lt;/a&gt;
+when creating the API. It is referenced in the specification, however.
+From the section on &lt;a href=&quot;http://www.w3.org/TR/xpath/#node-tests&quot;&gt;node tests&lt;/a&gt; (emphasis mine):&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A &lt;a href=&quot;http://www.w3.org/TR/REC-xml-names#NT-QName&quot;&gt;QName&lt;/a&gt; in the node test is expanded into an &lt;a href=&quot;http://www.w3.org/TR/xpath/#dt-expanded-name&quot;&gt;expanded-name&lt;/a&gt;
+using the namespace declarations from the expression context. This is
+the same way expansion is done for element type names in start and
+end-tags except that &lt;strong&gt;the default namespace declared with xmlns is
+not used: if the &lt;a href=&quot;http://www.w3.org/TR/REC-xml-names#NT-QName&quot;&gt;QName&lt;/a&gt; does not have a prefix, then the namespace
+URI is null (this is the same way attribute names are expanded).&lt;/strong&gt; It
+is an error if the QName has a prefix for which there is no namespace
+declaration in the expression context.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It is again referenced (contradictorily?) in the section on &lt;a href=&quot;http://www.w3.org/TR/xpath/#element-nodes&quot;&gt;Element
+Nodes&lt;/a&gt; (again, emphasis mine):&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;There is an element node for every element in the document. An
+element node has an &lt;a href=&quot;http://www.w3.org/TR/xpath/#dt-expanded-name&quot;&gt;expanded-name&lt;/a&gt; computed by expanding the
+&lt;a href=&quot;http://www.w3.org/TR/REC-xml-names#NT-QName&quot;&gt;QName&lt;/a&gt; of the element specified in the tag in accordance with the
+XML Namespaces Recommendation [&lt;a href=&quot;http://www.w3.org/TR/xpath/#XMLNAMES&quot;&gt;XML Names&lt;/a&gt;]. &lt;strong&gt;The namespace URI
+of the element’s &lt;a href=&quot;http://www.w3.org/TR/xpath/#dt-expanded-name&quot;&gt;expanded-name&lt;/a&gt; will be null if the &lt;a href=&quot;http://www.w3.org/TR/REC-xml-names#NT-QName&quot;&gt;QName&lt;/a&gt; has
+no prefix and there is no applicable default namespace.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Now back to Python, the design of &lt;a href=&quot;https://docs.python.org/3/library/xml.etree.elementtree.html#elementtree-xpath&quot;&gt;ElementPath&lt;/a&gt; chooses to &lt;a href=&quot;https://mail.python.org/pipermail/xml-sig/2002-April/007558.html&quot;&gt;follow
+the first quote from the
+spec&lt;/a&gt;,
+even though the qualified names of tags and attributes are strings with
+the URIs embedded. Recent versions of Python allow functions like
+&lt;a href=&quot;https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element.find&quot;&gt;find()&lt;/a&gt;
+to take a &lt;code&gt;namespaces&lt;/code&gt; argument, and a given mapping will find the
+qualified names when a prefix is given, but if a default namespace is
+in effect, you’d need to create the qualified name manually, or do
+something destructive like remove the default namespaces from all
+elements. That is, for an XML document like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;root&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://example.com&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:pre=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://example.com/prefix&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&amp;gt;&lt;/span&gt;1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;pre:b&amp;gt;&lt;/span&gt;2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/pre:b&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/root&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You could not find &lt;code&gt;&amp;lt;a&amp;gt;&lt;/code&gt; (or even &lt;code&gt;&amp;lt;root&amp;gt;&lt;/code&gt;) with a simple path like this:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/5ea94726785bcffc3db7.js?file=example.py&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;As far as I know, there is not a good solution to this problem. Even
+&lt;a href=&quot;http://lxml.de/&quot;&gt;lxml&lt;/a&gt; is aware of the problem but &lt;a href=&quot;http://lxml.de/FAQ.html#bugs&quot;&gt;suggests modifying the document
+with a bogus prefix&lt;/a&gt;. The design of
+&lt;a href=&quot;https://docs.python.org/3/library/xml.etree.elementtree.html#elementtree-xpath&quot;&gt;ElementPath&lt;/a&gt; seems to selectively choose which parts of the
+&lt;a href=&quot;http://www.w3.org/TR/xpath/&quot;&gt;XPath&lt;/a&gt; spec to implement (when considered in conjunction with the
+model that &lt;a href=&quot;https://docs.python.org/3/library/xml.etree.elementtree.html&quot;&gt;ElementTree&lt;/a&gt; provides). In its defense, the XPath spec
+itself is lacking in some ways. Nevertheless, a more &lt;em&gt;useful&lt;/em&gt; (if
+perhaps technically &lt;em&gt;incorrect&lt;/em&gt;) implementation in the Python standard
+library would replace the &lt;code&gt;xpath_tokenizer()&lt;/code&gt; function shown here:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/5ea94726785bcffc3db7.js?file=ElementPath-xpath_tokenizer-original.py&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;with this:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/5ea94726785bcffc3db7.js?file=ElementPath-xpath_tokenizer-updated.py&quot;&gt; &lt;/script&gt;
+
+</description>
+        <pubDate>Wed, 04 Nov 2015 00:00:00 -0800</pubDate>
+        <link>http://www.goodmami.org/2015/11/04/python-xpath-and-default-namespaces.html</link>
+        <guid isPermaLink="true">http://www.goodmami.org/2015/11/04/python-xpath-and-default-namespaces.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>From Wordpress to Jekyll</title>
+        <description>&lt;p&gt;I’ve moved away from &lt;a href=&quot;https://wordpress.com/&quot;&gt;Wordpress&lt;/a&gt; and am now using &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; on
+&lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt; for hosting my website. I’ve migrated the (abbreviated)
+content of the more popular posts, but if you were redirected here
+expecting content that wasn’t included, &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#103;&amp;#111;&amp;#111;&amp;#100;&amp;#109;&amp;#097;&amp;#110;&amp;#046;&amp;#109;&amp;#046;&amp;#119;&amp;#064;&amp;#103;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&quot;&gt;let me
+know&lt;/a&gt; and I can add it. While I appreciate
+all the helpful and encouraging comments on the original posts, I didn’t
+migrate comments unless they added a fix or suggestion. The migrated
+posts are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/2011/07/04/Simple-logging-in-BASH-scripts.html&quot;&gt;Simple logging in BASH scripts&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2012/02/09/Accumulating-dictionaries-in-Python.html&quot;&gt;Accumulating dictionaries in Python&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2013/01/30/Getting-only-the-first-match-in-a-list-comprehension.html&quot;&gt;Python one-liner: Getting only the first match in a list comprehension&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If others are thinking of migrating from Wordpress (on &lt;a href=&quot;http://dreamhost.com&quot;&gt;Dreamhost&lt;/a&gt;),
+this &lt;a href=&quot;http://www.leemunroe.com/moving-wordpress-dreamhost-to-jekyll-github/&quot;&gt;post by Lee Munroe&lt;/a&gt; is useful.&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 04 May 2015 00:00:00 -0700</pubDate>
+        <link>http://www.goodmami.org/2015/05/04/Relocating.html</link>
+        <guid isPermaLink="true">http://www.goodmami.org/2015/05/04/Relocating.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Python one-liner: Getting only the first match in a list comprehension</title>
+        <description>&lt;p&gt;Using &lt;code&gt;next()&lt;/code&gt; with a generator expression to simulate a &lt;code&gt;break&lt;/code&gt;
+statement in a for loop. Something like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;some_list&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;match&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;default_val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Which is the same as:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;default_val&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;some_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;match&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Commenter Emanuel Hoogeveen suggested the &lt;code&gt;default_val&lt;/code&gt;, because
+otherwise the &lt;code&gt;next()&lt;/code&gt; would raise a &lt;code&gt;StopIteration&lt;/code&gt; if there were no
+matches in the list. He found the answer &lt;a href=&quot;http://stackoverflow.com/questions/7102050/how-can-i-get-a-python-generator-to-return-none-rather-than-stopiteration&quot;&gt;here on StackOverflow&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thanks to &lt;a href=&quot;https://github.com/ashleyconnor&quot; class=&quot;user-mention&quot;&gt;@ashleyconnor&lt;/a&gt; for finding a bug in my code and submitting a
+&lt;a href=&quot;https://github.com/goodmami/goodmami.github.io/pull/1&quot;&gt;pull request&lt;/a&gt;!&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 30 Jan 2013 00:00:00 -0800</pubDate>
+        <link>http://www.goodmami.org/2013/01/30/Getting-only-the-first-match-in-a-list-comprehension.html</link>
+        <guid isPermaLink="true">http://www.goodmami.org/2013/01/30/Getting-only-the-first-match-in-a-list-comprehension.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Accumulating Dictionaries in Python</title>
+        <description>&lt;p&gt;A dictionary subclass that deals with key collisions by accumulating
+the values with a custom operator.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/8679536.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;Commenter Nathan added:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;For counting things I use the
+&lt;a href=&quot;http://docs.python.org/library/collections.html#collections.Counter&quot;&gt;collections.Counter&lt;/a&gt;
+class. In addition to giving you a one-liner for obtaining counts from
+a sequence or other iterable, the &lt;code&gt;most_common()&lt;/code&gt; method makes it easy
+to retrieve the highest-count item(s).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The reminder of the Counter class was useful, since it solves many of
+the same problems as AccumulationDict. I then countered (ha!) by noting
+that Counter only increments for each key collision, whereas
+AccumulationDict can track counts when you already have some frequency
+information, or when you want to do more than count things (accumulate
+items in a list, for instance).&lt;/p&gt;
+</description>
+        <pubDate>Thu, 09 Feb 2012 00:00:00 -0800</pubDate>
+        <link>http://www.goodmami.org/2012/02/09/Accumulating-dictionaries-in-Python.html</link>
+        <guid isPermaLink="true">http://www.goodmami.org/2012/02/09/Accumulating-dictionaries-in-Python.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Simple logging in BASH scripts</title>
+        <description>&lt;p&gt;A set of basic functions for writing to logs in BASH.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/6556701.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;Commenter Jul added:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Very useful, thanks!
+You also could add timestamp at the beginning of each logged line :&lt;/p&gt;
+
+  &lt;pre&gt;&lt;code&gt;dte=`date +’%Y%m%d %H:%M:%S’`
+echo -e “$dte $2″| …
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Mon, 04 Jul 2011 00:00:00 -0700</pubDate>
+        <link>http://www.goodmami.org/2011/07/04/Simple-logging-in-BASH-scripts.html</link>
+        <guid isPermaLink="true">http://www.goodmami.org/2011/07/04/Simple-logging-in-BASH-scripts.html</guid>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
