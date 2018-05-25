@@ -1,33 +1,220 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="home">
+<head>
+  <meta charset="UTF-8">
+  <title>Michael Wayne Goodman</title>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.12/js/all.js" integrity="sha384-Voup2lBiiyZYkRto2XWqbzxHXwzcm4A5RfdfG6466bu5LqjwwrjXCMBQBLMWh7qR"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
+</head>
 
-  <h1 class="page-heading">blog posts</h1>
+<body>
+  <header>
+    <div class="center">
+      <h1> <a href="/">Michael Wayne Goodman</a> </h1>
+      <h2> Computational Linguist </h2>
+      <nav>
+        <ul>
+          <li> <a href="/publications.html"> publications </a> </li>
+          <li> <a href="/projects.html"> projects </a> </li>
+          <li> <a href="/blog.html"> blog </a> </li>
+          <li> <a href="mailto:goodman.m.w@gmail.com"> contact </a> </li>
+        </ul>
+      </nav>
+      <ul>
+        <li><a href="https://github.com/goodmami"><i title="GitHub" class="fab fa-github"></i></a></li>
+        <li><a href="https://stackoverflow.com/users/1441112/goodmami"><i title="StackOverflow" class="fab fa-stack-overflow"></i></a></li>
+        <li><a href="https://www.linkedin.com/in/michael-wayne-goodman"><i title="LinkedIn" class="fab fa-linkedin"></i></a></li>
+        <li><a href="https://scholar.google.com/citations?user=04Hg4PAAAAAJ"><i title="Google Scholar" class="ai ai-google-scholar-square"></i></a></li>
+        <li><a href="https://www.researchgate.net/profile/Michael_Goodman5"><i title="ResearchGate" class="fab fa-researchgate"></i></a></li>
+        <li><a href="https://www.semanticscholar.org/author/Michael-Wayne-Goodman/1939647"><i title="Semantic Scholar" class="ai ai-semantic-scholar fakesquare"></i></a> </li>
+      </ul>
+    </div>
+  </header>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
+  <section>
+    <div class="logo">
+      <img src="/static/me.png" /> </div>
+    <h2>About</h2>
+    <p> I am a computational linguist living in Seattle, USA. My primary research interests include:</p>
+    <ul>
+      <li>Representations of knowledge and formal semantics</li>
+      <li>Machine translation</li>
+      <li>Natural language understanding</li>
+      <li>Natural language generation</li>
+      <li>Grammar development</li>
+      <li>Resource development for low-resource languages</li>
+    </ul>
+    <p>
+      I'm currently looking for a job or postdoc position in AI/NLP.
+      Here is my <a href="/static/goodman-cv.pdf"><i class="fas fa-file-pdf"></i> CV</a>.
+    </p>
+  </section>
+
+  <section>
+    <h2>Selected Publications <span class="hextra"><a href="/publications.html">all publications...</a></span></h2>
+
+    <ul class="publications">
       <li>
-        <span class="post-meta">{{ post.date | date: "%Y-%b-%d" }} ::</span>
-        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        <span class="author">Michael Wayne Goodman, Ryan Georgi and Fei Xia.</span>
+        <span class="title">PDF-to-Text Reanalysis for Linguistic Data Mining.</span>
+        <span>Proceedings of the Eleventh International Conference on Language Resources and Evaluation (LREC 2018).</span>
+        <div class="publinks">
+          <a href="http://www.lrec-conf.org/proceedings/lrec2018/pdf/947.pdf"><i class="fas fa-file-pdf"></i> Paper</a>
+          <a href="/static/bib/goodman-georgi-xia-2018-poster.pdf"><i class="fas fa-file-pdf"></i> Poster</a>
+          <a class="show-modal"><i class="fas fa-file-alt"></i> Abstract</a>
+          <p class="modal">Extracting semi-structured text from scientific writing in PDF files is a difficult task that has faced researchers for decades. In the 1990s, this task was largely a computer vision and OCR problem, as PDF files were often the result of scanning printed documents. Today, PDFs have standardized digital typesetting without the need for OCR, but extraction of semi-structured text from these documents remains a nontrivial task. In this paper, we present a system for the reanalysis of glyph-level PDF extracted text that performs block detection, respacing, and tabular data analysis for the purposes of linguistic data mining. We further present our reanalyzed output format, which attempts to eliminate the extreme verbosity of XML output while leaving important positional information available for downstream processes.</p>
+          <a href="/static/bib/goodman-georgi-xia-2018.bib"><i class="fas fa-quote-right"></i> bib</a>
+        </div>
       </li>
-    {% endfor %}
-  </ul>
+      <li>
+        <span class="author"> Ann A. Copestake, Guy Emerson, Michael Wayne Goodman, Matic Horvat, Alexander Kuhnle, and Ewa Muszynska.
+        </span>
+        <span class="title"> Resources for building applications with Dependency Minimal Recursion Semantics. </span>
+        <span>Proceedings of the Tenth International Conference on Language Resources and Evaluation (LREC 2016).</span>
+        <div class="publinks">
+          <a href="http://www.lrec-conf.org/proceedings/lrec2016/pdf/634_Paper.pdf"><i class="fas fa-file-pdf"></i> Paper</a>
+          <a class="show-modal"><i class="fas fa-file-alt"></i> Abstract</a>
+          <p class="modal">We describe resources aimed at increasing the usability of the semantic representations utilized within the DELPH-IN (Deep Linguistic Processing with HPSG) consortium. We concentrate in particular on the Dependency Minimal Recursion Semantics (DMRS) formalism, a graph-based representation designed for compositional semantic representation with deep grammars. Our main focus is on English, and specifically English Resource Semantics (ERS) as used in the English Resource Grammar. We first give an introduction to ERS and DMRS and a brief overview of some existing resources and then describe in detail a new repository which has been developed to simplify the use of ERS/DMRS. We explain a number of operations on DMRS graphs which our repository supports, with sketches of the algorithms, and illustrate how these operations can be exploited in application building. We believe that this work will aid researchers to exploit the rich and effective but complex DELPH-IN resources.</p>
+          <a href="/static/bib/copestake-et-al-2016.bib"><i class="fas fa-quote-right"></i> bib</a>
+        </div>
+      </li>
+      <li>
+        <span class="author"> Fei Xia, William D. Lewis, Michael Wayne Goodman, Glenn Slayden, Ryan Georgi, Joshua Crowgey, and Emily M. Bender.
+        </span>
+        <span class="title"> Enriching a massively multilingual database of interlinear glossed text. </span>
+        <span> Language Resources and Evaluation 50, no. 2 (2016): 321&ndash;349. </span>
+        <div class="publinks">
+          <a href="https://doi.org/10.1007/s10579-015-9325-4"><i class="ai ai-doi"></i> Link</a>
+          <a class="show-modal"><i class="fas fa-file-alt"></i> Abstract</a>
+          <p class="modal">The majority of the world's languages have little to no NLP resources or tools. This is due to a lack of training data (``resources'') over which tools, such as taggers or parsers, can be trained. In recent years, there have been increasing efforts to apply NLP methods to a much broader swath of the world's languages. In many cases this involves bootstrapping the learning process with enriched or partially enriched resources. We propose that Interlinear Glossed Text (IGT), a very common form of annotated data used in the field of linguistics, has great potential for bootstrapping NLP tools for resource-poor languages. Although IGT is generally very richly annotated, and can be enriched even further (e.g., through structural projection), much of the content is not easily consumable by machines since it remains ``trapped'' in linguistic scholarly documents and in human readable form. In this paper, we describe the expansion of the ODIN resource---a database containing many thousands of instances of IGT for over a thousand languages. We enrich the original IGT data by adding word alignment and syntactic structure. To make the data in ODIN more readily consumable by tool developers and NLP researchers, we adopt and extend a new XML format for IGT, called Xigt. We also develop two packages for manipulating IGT data: one, INTENT, enriches raw IGT automatically, and the other, XigtEdit, is a graphical IGT editor.</p>
+          <a href="/static/bib/xia-et-al-2016.bib"><i class="fas fa-quote-right"></i> bib</a>
+        </div>
+      </li>
+    </ul>
+  </section>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+  <section>
+    <h2>
+      Selected Projects
+      <span class="hextra"><a href="/projects.html">more projects...</a></span>
+    </h2>
 
-  <h1 class="page-heading">journal publications</h1>
+    <ul class="projects">
+      <li class="clear">
+        <figure>
+          <img alt="DELPHIN-Viz screenshot" src="/static/pydelphin-screenshot.png" />
+          <figcaption>The <a href="http://delph-in.github.com/delphin-viz/demo">DELPHIN-Viz demo</a> uses PyDelphin to interface a parser and to convert representations. This is a DMRS visualization of a Japanese sentence.</figcaption>
+        </figure>
+        <h3>PyDelphin <span class="hextra"><a href="https://github.com/delph-in/pydelphin"><i title="GitHub" class="fab fa-github"></i> GitHub Project</a></span></h3>
+        <p>
+          An open-source library for working with Minimal Recursion Semantics,
+          [incr tsdb()] test suites, TDL code, and other representations used
+          in HPSG grammars as produced within the
+          <a href="http://delph-in.net">DELPH-IN</a> consortium.
+        </p>
+      </li>
 
-  {% bibliography --file references -q @*[_type=journal]%}
+      <li class="clear">
+        <figure>
+          <img alt="Xigt visualization screenshot" src="/static/xigt-screenshot.png" />
+          <figcaption>
+            Xigt data can be visualized to highlight interlinear relationships. This
+            <a href="https://en.wikipedia.org/wiki/Yaqui_language">Yaqui [yaq]</a> example from the
+            <a href="http://depts.washington.edu/uwcl/odin/">ODIN corpus</a> comes from
+            <span class="title">Complement Types of Perception Verbs in Yaqui</span>
+            (<a href="http://www.acsu.buffalo.edu/~rrgpage/rrg/RRG2004%20Book%20of%20Proceedings.pdf#page=92">Guerrero, 2004</a>).
+          </figcaption>
+        </figure>
+        <h3>Xigt <span class="hextra"><a href="https://github.com/xigt"><i title="GitHub" class="fab fa-github"></i> GitHub Organization</a></span></h3>
+        <p>
+          A framework for working with interlinear glossed text, including the
+          eponymous Xigt data model that uses a flat structure with ID-references
+          in order to accommodate non-projective annotations, e.g., for annotating
+          semantic dependencies.
+        </p>
+      </li>
 
-  <h1 class="page-heading">conference and workshop publications</h1>
+      <li class="clear">
+          <figure>
+          <img alt="XMT dataflow diagram" src="/static/xmt-diagram.png" />
+          <figcaption>
+            XMT defines a workflow for automatically learning transfer rules for rule-based machine translation.
+          </figcaption>
+        </figure>
+        <h3>XMT <span class="hextra"><a href="https://github.com/goodmami/xmt"><i title="GitHub" class="fab fa-github"></i> GitHub Project</a></span></h3>
+        <p>
+          A processing pipeline and related scripts for transfer-based machine translation
+          in the <a href="http://moin.delph-in.net/LogonTop">LOGON</a> paradigm. This project
+          forms the bulk of the task-specific code I used for my Ph.D. research, although it
+          may be useful for others working in a similar space.
+        </p>
+      </li>
+    </ul>
+  </section>
 
-  {% bibliography --file references -q @*[_type=conference || _type=workshop]%}
+  <section>
+    <h2>
+      Education and Experience
+      <span class="hextra"><a href="/static/goodman-cv.pdf"><i class="fas fa-file-pdf"></i> CV</a></span>
+    </h2>
+    <ul class="fa-ul">
+      <li>
+        <span class="fa-li">
+          <i class="fas fa-graduation-cap"></i>
+        </span>
+        <p>Ph.D. Linguistics, University of Washington, March 2018</p>
+        <p>
+          Dissertation:&nbsp;
+          <a href="goodman-dissertation.pdf">
+            <i class="fas fa-file-pdf"></i>
+            <i>Semantic Operations for Transfer-based Machine Translation</i>
+          </a>
+        </p>
+      </li>
+      <li>
+          <span class="fa-li">
+            <i class="fas fa-briefcase"></i>
+          </span>
+          <p>Research Associate, Nanyang Technological University, April 2014&ndash;August 2015</p>
+      </li>
+      <li>
+        <span class="fa-li">
+          <i class="fas fa-graduation-cap"></i>
+        </span>
+        <p>MA Computational Linguistics, University of Washington, August 2009</p>
+        <p>
+          Thesis:&nbsp;
+          <a href="goodman-ma-thesis.pdf">
+            <i class="fas fa-file-pdf"></i>
+            <i>Egad: Efficiently Evaluating and Extracting Errors from Deep Grammars</i>
+          </a>
+        </p>
+      </li>
+      <li>
+          <span class="fa-li">
+            <i class="fas fa-briefcase"></i>
+          </span>
+          <p>Contractor for Microsoft Translator, Microsoft Research (Populus Group), February 2009&ndash;June 2009</p>
+      </li>
+      <li>
+          <span class="fa-li">
+            <i class="fas fa-briefcase"></i>
+          </span>
+          <p>Invited Advisor, National Institute of Information and Communications Technology (NICT / 情報通信研究機構), October 2008&ndash;January 2009</p>
+      </li>
+      <li>
+        <span class="fa-li">
+          <i class="fas fa-graduation-cap"></i>
+        </span>
+        <p>BS Computer Science, Oregon State University, August 2007</p>
+      </li>
+    </ul>
+  </section>
 
-  <h1 class="page-heading">presentations, demos, etc.</h1>
+</body>
 
-  {% bibliography --file references -q @*[_type=presentation || _type=demo || _type=other]%}
-
-
-</div>
+</html>

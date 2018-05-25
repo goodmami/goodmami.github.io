@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Michael Wayne Goodman - Accumulating dictionaries in Python</title>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.12/js/all.js" integrity="sha384-Voup2lBiiyZYkRto2XWqbzxHXwzcm4A5RfdfG6466bu5LqjwwrjXCMBQBLMWh7qR"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
+</head>
+
+<body>
+  <header>
+    <div class="center">
+      <h1> <a href="/">Michael Wayne Goodman</a> </h1>
+      <h2> Computational Linguist </h2>
+      <nav>
+        <ul>
+          <li> <a href="/publications.html"> publications </a> </li>
+          <li> <a href="/projects.html"> projects </a> </li>
+          <li> <a href="/blog.html"> blog </a> </li>
+          <li> <a href="mailto:goodman.m.w@gmail.com"> contact </a> </li>
+        </ul>
+      </nav>
+      <ul>
+        <li><a href="https://github.com/goodmami"><i title="GitHub" class="fab fa-github"></i></a></li>
+        <li><a href="https://stackoverflow.com/users/1441112/goodmami"><i title="StackOverflow" class="fab fa-stack-overflow"></i></a></li>
+        <li><a href="https://www.linkedin.com/in/michael-wayne-goodman"><i title="LinkedIn" class="fab fa-linkedin"></i></a></li>
+        <li><a href="https://scholar.google.com/citations?user=04Hg4PAAAAAJ"><i title="Google Scholar" class="ai ai-google-scholar-square"></i></a></li>
+        <li><a href="https://www.researchgate.net/profile/Michael_Goodman5"><i title="ResearchGate" class="fab fa-researchgate"></i></a></li>
+        <li><a href="https://www.semanticscholar.org/author/Michael-Wayne-Goodman/1939647"><i title="Semantic Scholar" class="ai ai-semantic-scholar fakesquare"></i></a> </li>
+      </ul>
+    </div>
+  </header>
+
+  <article>
+    <h2> Accumulating dictionaries in Python </h2>
+    <p class="date">2012 February 09</p>
+    <p>A dictionary subclass that deals with key collisions by accumulating the values with a custom operator.</p>
+    <script src="https://gist.github.com/goodmami/8679536.js"></script>
+    <p>Commenter Nathan added:</p>
+    <blockquote>
+    <p>For counting things I use the <a href="http://docs.python.org/library/collections.html#collections.Counter">collections.Counter</a> class. In addition to giving you a one-liner for obtaining counts from a sequence or other iterable, the <code>most_common()</code> method makes it easy to retrieve the highest-count item(s).</p>
+    </blockquote>
+    <p>The reminder of the Counter class was useful, since it solves many of the same problems as AccumulationDict. I note that Counter only increments for each key collision, whereas AccumulationDict can track counts when you already have some frequency information, or when you want to do more than count things (accumulate items in a list, for instance).</p>
+  </article>
+
+</body>
+</html>

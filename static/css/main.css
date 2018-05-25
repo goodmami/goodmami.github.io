@@ -1,0 +1,111 @@
+html { font-family: 'Ubuntu', sans-serif; font-size: large; text-align: justify;}
+
+body {
+  margin: 0;
+  background: #ffffff;
+}
+header { margin: 0; background: #4b2e83; color: #ffffff; }
+header h1, header h2, header h3, header nav { display: inline-block; margin: 5px 20px 5px 5px; }
+header h2 { font-size: x-large; }
+header ul { display: inline-block; list-style-type: none; padding: 0; margin: 5px; }
+header li { display: inline; font-size: larger; font-weight: bold; margin: 5px 2px 5px 5px; }
+header nav li {  margin: 5px 10px 5px 5px; }
+header a { text-decoration: none; }
+header a:link { color: #FF8357; }
+header a:visited { color: #FF8357; }
+header a:hover { color: #FFBBA3; }
+span.visiting { color: rgb(255,255,255,.6); }
+
+h1 > a:link { color: inherit; }
+h1 > a:visited { color: inherit; }
+h1 > a:hover { color: inherit; text-decoration: none; }
+
+section {
+  max-width: 1024px;
+  margin: 5px auto 40px auto;
+  clear: both;
+}
+section h2 { font-size: x-large; color: #4b2e83; }
+section h3 { font-size: large; }
+
+article {
+  max-width: 720px;
+  margin: 5px auto 40px auto;
+  clear: both;
+}
+
+ul.publications { list-style-type: none; }
+span.title { font-weight: bold; font-style: italic; }
+ul.publications > li { padding-left: 0em; text-indent: -1em; margin-bottom: 2ex;}
+.publinks { position: relative; }
+.publinks a { margin-left: 1em; }
+.publinks a i.ai { margin-left: 1em; } /* Academicons bug */
+.modal {
+  visibility: hidden;
+  z-index: 1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  overflow: scroll;
+  background: #ffffff;
+  border: solid 2px #4b2e83;
+  padding: 1em;
+  text-indent: 1em;
+}
+li:nth-child(n-2) { top: 10px; }
+li:nth-child(2n-2) .modal { bottom: 10px; }
+a.show-modal:hover ~ .modal { visibility: visible; }
+
+ul.projects { list-style-type: none; }
+ul.projects > li h3 { text-indent: -1em; }
+ul.projects > li { margin: 20px 0; }
+
+figure {
+  display: table;
+  width: 1px; /* https://stackoverflow.com/a/6536025/1441112 */
+  margin: 0px 5px 20px 15px;
+  float: right;
+  border: solid 1px rgb(75,46,131,.2);
+}
+figcaption {
+  border-top: solid 1px rgb(75,46,131,.2);
+  font-size: medium;
+  /* text-align: center; */
+  padding: .5ex 1em;
+}
+
+ul.posts { list-style-type: none; }
+ul.posts > li { margin: 20px 0; }
+
+code { width: 100%; font: monospace; overflow: scroll; white-space: pre-wrap; border: solid 1px #dddddd; }
+pre { margin-left: 1em; border: solid 1px #dddddd; }
+pre code { border: none; }
+blockquote { margin-left: 1em; padding: 0px 10px; background: rgb(75,46,131,.08) }
+blockquote p { font-style: italic; }
+
+p.date { font-size: medium; color: #444444; }
+
+.center { text-align: center; }
+.clear { clear: both; }
+.hextra { font-size: initial; margin-left: 2em; }
+
+a { color: #D73F09; text-decoration: none; cursor: pointer; }
+a:visited { color: #D73F09; }
+a:hover { color: #FF8357; text-decoration: underline; }
+
+.logo { float: right; position: relative; overflow: hidden; width: 200px; height: 200px; margin: 5px; border: solid 2px #dddddd; }
+.logo img { position: absolute; bottom: 0; left: -20px; height: 200px; margin: 0; padding: 0; }
+
+
+.fakesquare { padding: 0 0 .1ex 0; margin: 0; width: .9em; height: 18px; background: #FF8357; color: #4b2e83; }
+.fakesquare:hover { background: #FFBBA3; color: #4b2e83; }
+
+@media screen and (max-width: 799px) {
+    html { font-size: small; }
+    header .container { height: auto; min-height: 100px;}
+    .container > div { margin: 5px; padding: 0}
+    .container img { height: 100px;}
+    .header-links a { font-size: medium; }
+    .fakesquare { height: 14px; }
+}

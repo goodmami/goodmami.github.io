@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Michael Wayne Goodman - Projects</title>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.12/js/all.js" integrity="sha384-Voup2lBiiyZYkRto2XWqbzxHXwzcm4A5RfdfG6466bu5LqjwwrjXCMBQBLMWh7qR"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
+</head>
+
+<body>
+  <header>
+    <div class="center">
+      <h1> <a href="/">Michael Wayne Goodman</a> </h1>
+      <h2> Computational Linguist </h2>
+      <nav>
+        <ul>
+          <li> <a href="/publications.html"> publications </a> </li>
+          <li> <span class="visiting"> projects </span> </li>
+          <li> <a href="/blog.html"> blog </a> </li>
+          <li> <a href="mailto:goodman.m.w@gmail.com"> contact </a> </li>
+        </ul>
+      </nav>
+      <ul>
+        <li><a href="https://github.com/goodmami"><i title="GitHub" class="fab fa-github"></i></a></li>
+        <li><a href="https://stackoverflow.com/users/1441112/goodmami"><i title="StackOverflow" class="fab fa-stack-overflow"></i></a></li>
+        <li><a href="https://www.linkedin.com/in/michael-wayne-goodman"><i title="LinkedIn" class="fab fa-linkedin"></i></a></li>
+        <li><a href="https://scholar.google.com/citations?user=04Hg4PAAAAAJ"><i title="Google Scholar" class="ai ai-google-scholar-square"></i></a></li>
+        <li><a href="https://www.researchgate.net/profile/Michael_Goodman5"><i title="ResearchGate" class="fab fa-researchgate"></i></a></li>
+        <li><a href="https://www.semanticscholar.org/author/Michael-Wayne-Goodman/1939647"><i title="Semantic Scholar" class="ai ai-semantic-scholar fakesquare"></i></a> </li>
+      </ul>
+    </div>
+  </header>
+
+  <section>
+    <h2> DELPH-IN Projects </h2>
+
+    <p>I have worked on numerous projects using <a href="http://delph-in.net">DELPH-IN</a> resources and representations, mainly with <a href="http://moin.delph-in.net/RmrsTop">Minimal Recursion Semantics</a>.</p>
+
+    <ul class="projects">
+      <li>
+        <h3>PyDelphin <span class="hextra"><a href="https://github.com/delph-in/pydelphin"><i title="GitHub" class="fab fa-github"></i> GitHub</a></span></h3>
+        <figure>
+          <img alt="DELPHIN-Viz screenshot" src="/static/pydelphin-screenshot.png" />
+          <figcaption>This visualization of the Japanese sentence "算数は数を取り扱う" was produced using the ACE processor and the Jacy Japanese grammar to get the semantic representation, PyDelphin for conversion to DMRS, Bottlenose for serving via HTTP, and delphin-viz for rendering.</figcaption>
+        </figure>
+        <p>
+          An open-source library for working with Minimal Recursion Semantics,
+          [incr tsdb()] test suites, TDL code, and other representations used
+          in HPSG grammars as produced within the
+          <a href="http://delph-in.net">DELPH-IN</a> consortium.
+        </p>
+      </li>
+
+      <li>
+        <h3>Jacy <span class="hextra"><a href="https://github.com/delph-in/jacy"><i title="GitHub" class="fab fa-github"></i> GitHub</a></span></h3>
+        <p>
+          Jacy is an implemented HPSG grammar of Japanese.
+          It is currently maintained by <a href="http://www3.ntu.edu.sg/home/fcbond/">Francis Bond</a>.
+          I have contributed to its development with thorough use/testing, reporting bugs, and writing code.
+        </p>
+      </li>
+
+      <li>
+        <h3>Bottlenose <span class="hextra"><a href="https://github.com/delph-in/bottlenose"><i title="GitHub" class="fab fa-github"></i> GitHub</a></span></h3>
+        <p>
+          A Python implementation of the <a href="http://moin.delph-in.net/ErgApi">HTTP API for DELPH-IN grammars</a>.
+          I co-developed the API with <a href="http://www.mn.uio.no/ifi/english/people/aca/oe/">Stephan Oepen</a>, who maintains the Lisp implementation as part of <a href="http://moin.delph-in.net/LkbTop">the LKB</a>.
+        </p>
+      </li>
+
+      <li>
+        <h3>delphin-viz <span class="hextra"><a href="https://github.com/delph-in/delphin-viz"><i title="GitHub" class="fab fa-github"></i> GitHub</a></span></h3>
+        <p>
+          Web-based visualizations for MRS, DMRS, and derivations (i.e., HPSG syntax trees). Co-developed with <a href="http://nedned.net/">Ned Letcher</a>.
+        </p>
+      </li>
+
+      <li>
+        <h3>ACE <span class="hextra"><a href="http://sweaglesw.org/linguistics/ace/"><i class="fas fa-link"></i> Website</a></span></h3>
+        <p>
+          ACE is a processor for DELPH-IN HPSG grammars, created and maintained by Woodley Packard.
+          I use ACE heavily in my research and I've contributed several bug reports and patches.
+        </p>
+      </li>
+
+      <li class="clear">
+        <h3>XMT <span class="hextra"><a href="https://github.com/goodmami/xmt"><i title="GitHub" class="fab fa-github"></i> GitHub</a></span></h3>
+        <figure>
+          <img alt="XMT dataflow diagram" src="/static/xmt-diagram.png" />
+          <figcaption>
+            XMT defines a workflow for automatically learning transfer rules for rule-based machine translation.
+            I used it for experiments in Japanese&ndash;English translation using JaEn.
+          </figcaption>
+        </figure>
+        <p>
+          A processing pipeline and related scripts for transfer-based machine translation
+          in the <a href="http://moin.delph-in.net/LogonTop">LOGON</a> paradigm. This project
+          forms the bulk of the task-specific code I used for my Ph.D. research, although it
+          may be useful for others working in a similar space.
+        </p>
+      </li>
+
+      <li>
+        <h3>JaEn <span class="hextra"><a href="https://github.com/delph-in/JaEn"><i title="GitHub" class="fab fa-github"></i> GitHub</a></span></h3>
+        <p>
+          A Japanese&ndash;English transfer grammar for machine translation. I applied JaEn for my dissertation research, and in doing so I updated and improved on its previous state.
+        </p>
+      </li>
+
+      <li class="clear">
+        <h3>gTest <span class="hextra"><a href="https://github.com/goodmami/gtest"><i title="GitHub" class="fab fa-github"></i> GitHub</a></span></h3>
+        <figure>
+          <img alt="gTest screenshot" src="/static/gtest-screenshot.png" />
+          <figcaption>gTest analyzes grammar performance and outputs a summary of the results</figcaption>
+        </figure>
+        <p>
+          A program for analyzing the performance of DELPH-IN grammars, including regression tests, tests for parsing coverage, and semantic well-formedness tests.
+        </p>
+      </li>
+
+    </ul>
+
+    <h2 class="clear">Xigt Projects</h2>
+
+    <p>I created the <a href="https://github.com/xigt">Xigt</a> framework for representing and processing interlinear glossed text with help from <a href="https://ryan.georgi.cc/">Ryan Georgi</a>, <a href="http://faculty.washington.edu/fxia/">Fei Xia</a>, and many others. Xigt started out as part of the <a href="http://depts.washington.edu/uwcl/aggregation/">AGGREGATION</a> project, then continued within the RiPLes and <a href="http://depts.washington.edu/uwcl/odin/">ODIN</a> projects.</p>
+
+    <ul>
+      <li class="clear">
+        <h3>Xigt <span class="hextra"><a href="https://github.com/xigt/xigt"><i title="GitHub" class="fab fa-github"></i> GitHub</a></span></h3>
+        <figure>
+          <img alt="Xigt visualization screenshot" src="/static/xigt-screenshot.png" />
+          <figcaption>
+            Xigt data can be visualized to highlight interlinear relationships. This
+            <a href="https://en.wikipedia.org/wiki/Yaqui_language">Yaqui [yaq]</a> example from the
+            <a href="http://depts.washington.edu/uwcl/odin/">ODIN corpus</a> comes from
+            <span class="title">Complement Types of Perception Verbs in Yaqui</span>
+            (<a href="http://www.acsu.buffalo.edu/~rrgpage/rrg/RRG2004%20Book%20of%20Proceedings.pdf#page=92">Guerrero, 2004</a>).
+            It was encoded in Xigt, enriched with <a href="https://github.com/rgeorgi/intent">INTENT</a>, served via Sleipnir, and visualized with xigtviz.
+          </figcaption>
+        </figure>
+        <p>
+          A framework for working with interlinear glossed text, including the
+          eponymous Xigt data model that uses a flat structure with ID-references
+          in order to accommodate non-projective annotations, e.g., for annotating
+          semantic dependencies.
+        </p>
+      </li>
+
+      <li>
+        <h3>Sleipnir <span class="hextra"><a href="https://github.com/xigt/sleipnir"><i title="GitHub" class="fab fa-github"></i> GitHub</a></span></h3>
+        <p>
+          A RESTful HTTP server for querying and browsing Xigt corpora.
+        </p>
+      </li>
+
+      <li>
+        <h3>xigtviz <span class="hextra"><a href="https://github.com/xigt/xigtviz"><i title="GitHub" class="fab fa-github"></i> GitHub</a></span></h3>
+        <p>
+          An visualization library for Xigt examples. Interlinear relationships are shown via cell highlighting as well as columnar alignment and, for longer examples, aligned tiers wrap together, as expected.
+        </p>
+      </li>
+
+      <li>
+        <h3>Freki <span class="hextra"><a href="https://github.com/xigt/freki"><i title="GitHub" class="fab fa-github"></i> GitHub</a></span></h3>
+        <figure>
+          <img alt="Freki before and after images" src="/static/freki-screenshot.png" />
+          <figcaption>
+            Freki analyzes PDFs as images for zone, column, and table detection.
+          </figcaption>
+        </figure>
+        <p>
+          An analyzer of extracted PDF contents for finding IGT.
+          Freki implements the XY-Cut algorithm with some adjustments for generated PDFs (rather than scanned images) and the maintenance of columnar alignment when converted to a monospace font, which aids in table (and IGT) discovery.
+        </p>
+      </li>
+    </ul>
+
+    <h2 class="clear">Other Projects</h2>
+
+    <ul>
+      <li class="clear">
+        <h3>Penman <span class="hextra"><a href="https://github.com/goodmami/penman"><i title="GitHub" class="fab fa-github"></i> GitHub</a></span></h3>
+        <figure>
+          <img alt="Penman screenshot" src="/static/penman-screenshot.png" />
+          <figcaption>
+            As a utility, the Penman module is useful for normalizing the serialization of graphs and for converting graphs to triples, but as a library it also allows for graph inspection and manipulation.
+          </figcaption>
+        </figure>
+        <p>
+          An encoder and decoder of DAGs in PENMAN notation, which was popularized by <a href="https://amr.isi.edu/">AMR</a> and also optionally used by <a href="http://moin.delph-in.net/RmrsDmrs">DMRS</a> and <a href="http://moin.delph-in.net/EdsTop">EDS</a>.
+        </p>
+      </li>
+
+      <li class="clear">
+        <h3>CartogrAPI <span class="hextra"><a href="https://github.com/goodmami/cartograpi"><i title="GitHub" class="fab fa-github"></i> GitHub</a></span></h3>
+        <p>
+          A tool for mapping out the public API of Python modules.
+          This wraps Python's <code>inspect</code> module and some others to create a user-friendly interface for API inspection and generates a JSON file of the description, which is then useful for website templating engines.
+          I use this for documenting the API of PyDelphin.
+        </p>
+      </li>
+
+      <li class="clear">
+        <h3>Toolbox <span class="hextra"><a href="https://github.com/goodmami/toolbox"><i title="GitHub" class="fab fa-github"></i> GitHub</a></span></h3>
+        <p>
+          A library for reading and interpreting <a href="https://software.sil.org/toolbox/">SIL Toolbox</a>'s SFM corpus files.
+          I use this for importing Toolbox texts into Xigt corpora.
+        </p>
+      </li>
+
+    </ul>
+  </section>
+</body>
+</html>

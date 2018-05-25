@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Michael Wayne Goodman - Python one-liner: Getting only the first match in a list comprehension</title>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.12/js/all.js" integrity="sha384-Voup2lBiiyZYkRto2XWqbzxHXwzcm4A5RfdfG6466bu5LqjwwrjXCMBQBLMWh7qR"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
+</head>
+
+<body>
+  <header>
+    <div class="center">
+      <h1> <a href="/">Michael Wayne Goodman</a> </h1>
+      <h2> Computational Linguist </h2>
+      <nav>
+        <ul>
+          <li> <a href="/publications.html"> publications </a> </li>
+          <li> <a href="/projects.html"> projects </a> </li>
+          <li> <a href="/blog.html"> blog </a> </li>
+          <li> <a href="mailto:goodman.m.w@gmail.com"> contact </a> </li>
+        </ul>
+      </nav>
+      <ul>
+        <li><a href="https://github.com/goodmami"><i title="GitHub" class="fab fa-github"></i></a></li>
+        <li><a href="https://stackoverflow.com/users/1441112/goodmami"><i title="StackOverflow" class="fab fa-stack-overflow"></i></a></li>
+        <li><a href="https://www.linkedin.com/in/michael-wayne-goodman"><i title="LinkedIn" class="fab fa-linkedin"></i></a></li>
+        <li><a href="https://scholar.google.com/citations?user=04Hg4PAAAAAJ"><i title="Google Scholar" class="ai ai-google-scholar-square"></i></a></li>
+        <li><a href="https://www.researchgate.net/profile/Michael_Goodman5"><i title="ResearchGate" class="fab fa-researchgate"></i></a></li>
+        <li><a href="https://www.semanticscholar.org/author/Michael-Wayne-Goodman/1939647"><i title="Semantic Scholar" class="ai ai-semantic-scholar fakesquare"></i></a> </li>
+      </ul>
+    </div>
+  </header>
+
+  <article>
+    <h2> Python one-liner: Getting only the first match in a list comprehension</h2>
+    <p class="date">2015 November 04</p>
+    <p>
+      Python's <a href="https://docs.python.org/3/library/xml.etree.elementtree.html">ElementTree</a> is a great interface for XML documents, but it has terrible support for namespaces; you basically have to <a href="http://effbot.org/zone/element-namespaces.htm">do it yourself</a>.
+      ElementTree's <a href="http://www.w3.org/TR/xpath/">XPath</a> support (a subset called <a href="https://docs.python.org/3/library/xml.etree.elementtree.html#elementtree-xpath">ElementPath</a>, although that name is not used publicly) will take a <code>namespaces</code> argument with mapping of prefixes to URIs, but it does not handle default namespaces.
+    </p>
+    <p>
+      I had to do some digging, but apparently the XPath designers <a href="https://lists.w3.org/Archives/Public/www-dom/2002JulSep/0159.html">didn't consider default namespaces</a> when creating the API.
+      It is referenced in the specification, however.
+      From the section on <a href="http://www.w3.org/TR/xpath/#node-tests">node tests</a> (emphasis mine):
+    </p>
+    <blockquote>
+      <p>
+        A <a href="http://www.w3.org/TR/REC-xml-names#NT-QName">QName</a> in the node test is expanded into an <a href="http://www.w3.org/TR/xpath/#dt-expanded-name">expanded-name</a> using the namespace declarations from the expression context.
+        This is the same way expansion is done for element type names in start and end-tags except that <strong>the default namespace declared with xmlns is not used: if the <a href="http://www.w3.org/TR/REC-xml-names#NT-QName">QName</a> does not have a prefix, then the namespace URI is null (this is the same way attribute names are expanded).</strong>
+        It is an error if the QName has a prefix for which there is no namespace declaration in the expression context.
+      </p>
+    </blockquote>
+    <p>
+      It is again referenced (contradictorily?) in the section on <a href="http://www.w3.org/TR/xpath/#element-nodes">Element Nodes</a> (again, emphasis mine):
+    </p>
+    <blockquote>
+      <p>
+        There is an element node for every element in the document.
+        An element node has an <a href="http://www.w3.org/TR/xpath/#dt-expanded-name">expanded-name</a> computed by expanding the <a href="http://www.w3.org/TR/REC-xml-names#NT-QName">QName</a> of the element specified in the tag in accordance with the XML Namespaces Recommendation [<a href="http://www.w3.org/TR/xpath/#XMLNAMES">XML Names</a>].
+        <strong>The namespace URI of the element's <a href="http://www.w3.org/TR/xpath/#dt-expanded-name">expanded-name</a> will be null if the <a href="http://www.w3.org/TR/REC-xml-names#NT-QName">QName</a> has no prefix and there is no applicable default namespace.</strong>
+      </p>
+    </blockquote>
+    <p>
+      Now back to Python, the design of <a href="https://docs.python.org/3/library/xml.etree.elementtree.html#elementtree-xpath">ElementPath</a> chooses to <a href="https://mail.python.org/pipermail/xml-sig/2002-April/007558.html">follow the first quote from the spec</a>, even though the qualified names of tags and attributes are strings with the URIs embedded.
+      Recent versions of Python allow functions like <a href="https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element.find">find()</a> to take a <code>namespaces</code> argument, and a given mapping will find the qualified names when a prefix is given, but if a default namespace is in effect, you'd need to create the qualified name manually, or do something destructive like remove the default namespaces from all elements.
+      That is, for an XML document like this:
+    </p>
+    <pre><code>&lt;root xmlns="http://example.com" xmlns:pre="http://example.com/prefix"&gt;
+  &lt;a&gt;1&lt;/a&gt;
+  &lt;pre:b&gt;2&lt;/pre:b&gt;
+&lt;/root&gt;</code></pre>
+    <p>You could not find <code>&lt;a&gt;</code> (or even <code>&lt;root&gt;</code>) with a simple path like this:</p>
+    <script src="https://gist.github.com/5ea94726785bcffc3db7.js?file=example.py"> </script>
+    <p>
+      As far as I know, there is not a good solution to this problem.
+      Even <a href="http://lxml.de/">lxml</a> is aware of the problem but <a href="http://lxml.de/FAQ.html#bugs">suggests modifying the document with a bogus prefix</a>.
+      The design of <a href="https://docs.python.org/3/library/xml.etree.elementtree.html#elementtree-xpath">ElementPath</a> seems to selectively choose which parts of the <a href="http://www.w3.org/TR/xpath/">XPath</a> spec to implement (when considered in conjunction with the model that <a href="https://docs.python.org/3/library/xml.etree.elementtree.html">ElementTree</a> provides).
+      In its defense, the XPath spec itself is lacking in some ways.
+      Nevertheless, a more <em>useful</em> (if perhaps technically <em>incorrect</em>) implementation in the Python standard library would replace the <code>xpath_tokenizer()</code> function shown here:
+    </p>
+    <script src="https://gist.github.com/5ea94726785bcffc3db7.js?file=ElementPath-xpath_tokenizer-original.py"> </script>
+    <p>with this:</p>
+    <script src="https://gist.github.com/5ea94726785bcffc3db7.js?file=ElementPath-xpath_tokenizer-updated.py"> </script>
+  </article>
+
+</body>
+</html>
