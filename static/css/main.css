@@ -4,7 +4,7 @@ body {
   margin: 0;
   background: #ffffff;
 }
-header { margin: 0; background: #4b2e83; color: #ffffff; }
+header,footer { margin: 0; background: #4b2e83; color: #ffffff; }
 header h1, header h2, header h3, header nav { display: inline-block; margin: 5px 20px 5px 5px; }
 header h2 { font-size: x-large; }
 header ul { display: inline-block; list-style-type: none; padding: 0; margin: 5px; }
@@ -15,6 +15,7 @@ header a:link { color: #FF8357; }
 header a:visited { color: #FF8357; }
 header a:hover { color: #FFBBA3; }
 span.visiting { color: rgb(255,255,255,.6); }
+footer div * { margin: 20px; display: inline-block; vertical-align: top; }
 
 h1 > a:link { color: inherit; }
 h1 > a:visited { color: inherit; }
