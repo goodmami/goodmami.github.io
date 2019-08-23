@@ -39,7 +39,7 @@
     <div class="logo">
       <img src="/static/me.png" /> </div>
     <h2>About</h2>
-    <p> I am a computational linguist living in Seattle, USA. My primary research interests include:</p>
+    <p> I am a computational linguist living in Singapore. My primary research interests include:</p>
     <ul>
       <li>Representations of knowledge and formal semantics</li>
       <li>Machine translation</li>
@@ -49,7 +49,8 @@
       <li>Resource development for low-resource languages</li>
     </ul>
     <p>
-      I'm currently looking for a job or postdoc position in AI/NLP.
+      I'm currently a postdoctoral research fellow in the <a href="https://soh.ntu.edu.sg/">School of Humanities</a> at <a href="https://ntu.edu.sg/">Nanyang Technological University</a>.
+
       Here is my <a href="/static/goodman-cv.pdf"><i class="fas fa-file-pdf"></i> CV</a>.
     </p>
   </section>
@@ -59,15 +60,26 @@
 
     <ul class="publications">
       <li>
-        <span class="author">Michael Wayne Goodman, Ryan Georgi and Fei Xia.</span>
-        <span class="title">PDF-to-Text Reanalysis for Linguistic Data Mining.</span>
-        <span>Proceedings of the Eleventh International Conference on Language Resources and Evaluation (LREC 2018).</span>
-        <div class="publinks">
-          <a href="http://www.lrec-conf.org/proceedings/lrec2018/pdf/947.pdf"><i class="fas fa-file-pdf"></i> Paper</a>
-          <a href="/static/bib/goodman-georgi-xia-2018-poster.pdf"><i class="fas fa-file-pdf"></i> Poster</a>
-          <a class="show-modal"><i class="fas fa-file-alt"></i> Abstract</a>
-          <p class="modal">Extracting semi-structured text from scientific writing in PDF files is a difficult task that has faced researchers for decades. In the 1990s, this task was largely a computer vision and OCR problem, as PDF files were often the result of scanning printed documents. Today, PDFs have standardized digital typesetting without the need for OCR, but extraction of semi-structured text from these documents remains a nontrivial task. In this paper, we present a system for the reanalysis of glyph-level PDF extracted text that performs block detection, respacing, and tabular data analysis for the purposes of linguistic data mining. We further present our reanalyzed output format, which attempts to eliminate the extreme verbosity of XML output while leaving important positional information available for downstream processes.</p>
-          <a href="/static/bib/goodman-georgi-xia-2018.bib"><i class="fas fa-quote-right"></i> bib</a>
+	<span class="author">Michael Wayne Goodman.</span>
+	<span class="title">AMR Normalization for Fairer Evaluation.</span>
+	<span>(to appear) Proceedings of the 33rd Pacific Asia Conference on Language, Information, and Computation (PACLIC 33).</span>
+	<span>2019.</span>
+	<div class="publinks">
+	  <a class="show-modal"><i class="fas fa-file-alt"></i> Abstract</a>
+          <p class="modal">Abstract Meaning Representation (AMR; Banarescu et al., 2013) encodes the meaning of sentences as a directed graph and Smatch (Cai and Knight, 2013) is the primary metric for evaluating AMR graphs. Smatch, however, is unaware of some meaning-equivalent variations in graph structure allowed by the AMR Specification and gives different scores for AMRs exhibiting these variations. In this paper I propose four normalization methods for helping to ensure that conceptually equivalent AMRs are evaluated as equivalent. Equivalent AMRs with and without normalization can look quite different---comparing a gold corpus to itself with relation reification alone yields a difference of 25 Smatch points, suggesting that the outputs of two systems may not be directly comparable without normalization. The algorithms described in this paper are implemented on top of an existing open-source Python toolkit for AMR and will be released under the same license.</p>
+          <a href="/static/bib/goodman-2019.bib"><i class="fas fa-quote-right"></i> bib</a>
+        </div>
+      </li>
+      <li>
+	<span class="author">Valerie Hajdik, Jan Buys, Michael Wayne Goodman, and Emily M. Bender.</span>
+	<span class="title">Neural Text Generation from Rich Semantic Representations.</span>
+	<span>Proceedings of the 2019 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL-HLT).</span>
+	<span>2019.</span>
+	<div class="publinks">
+	  <a class="show-modal"><i class="fas fa-file-alt"></i> Abstract</a>
+          <a href="https://www.aclweb.org/anthology/N19-1235"><i class="fas fa-file-pdf"></i> Paper</a>
+          <p class="modal">We propose neural models to generate high-quality text from structured representations based on Minimal Recursion Semantics (MRS). MRS is a rich semantic representation that encodes more precise semantic detail than other representations such as Abstract Meaning Representation (AMR). We show that a sequence-to-sequence model that maps a linearization of Dependency MRS, a graph-based representation of MRS, to text can achieve a BLEU score of 66.11 when trained on gold data. The performance of the model can be improved further using a high-precision, broad coverage grammar-based parser to generate a large silver training corpus, achieving a final BLEU score of 77.17 on the full test set, and 83.37 on the subset of test data most closely matching the silver data domain. Our results suggest that MRS-based representations are a good choice for applications that need both structured semantics and the ability to produce natural language text as output.</p>
+          <a href="https://aclweb.org/anthology/papers/N/N19/N19-1235.bib"><i class="fas fa-quote-right"></i> bib</a>
         </div>
       </li>
       <li>
@@ -80,18 +92,6 @@
           <a class="show-modal"><i class="fas fa-file-alt"></i> Abstract</a>
           <p class="modal">We describe resources aimed at increasing the usability of the semantic representations utilized within the DELPH-IN (Deep Linguistic Processing with HPSG) consortium. We concentrate in particular on the Dependency Minimal Recursion Semantics (DMRS) formalism, a graph-based representation designed for compositional semantic representation with deep grammars. Our main focus is on English, and specifically English Resource Semantics (ERS) as used in the English Resource Grammar. We first give an introduction to ERS and DMRS and a brief overview of some existing resources and then describe in detail a new repository which has been developed to simplify the use of ERS/DMRS. We explain a number of operations on DMRS graphs which our repository supports, with sketches of the algorithms, and illustrate how these operations can be exploited in application building. We believe that this work will aid researchers to exploit the rich and effective but complex DELPH-IN resources.</p>
           <a href="/static/bib/copestake-et-al-2016.bib"><i class="fas fa-quote-right"></i> bib</a>
-        </div>
-      </li>
-      <li>
-        <span class="author"> Fei Xia, William D. Lewis, Michael Wayne Goodman, Glenn Slayden, Ryan Georgi, Joshua Crowgey, and Emily M. Bender.
-        </span>
-        <span class="title"> Enriching a massively multilingual database of interlinear glossed text. </span>
-        <span> Language Resources and Evaluation 50, no. 2 (2016): 321&ndash;349. </span>
-        <div class="publinks">
-          <a href="https://doi.org/10.1007/s10579-015-9325-4"><i class="ai ai-doi"></i> Link</a>
-          <a class="show-modal"><i class="fas fa-file-alt"></i> Abstract</a>
-          <p class="modal">The majority of the world's languages have little to no NLP resources or tools. This is due to a lack of training data (``resources'') over which tools, such as taggers or parsers, can be trained. In recent years, there have been increasing efforts to apply NLP methods to a much broader swath of the world's languages. In many cases this involves bootstrapping the learning process with enriched or partially enriched resources. We propose that Interlinear Glossed Text (IGT), a very common form of annotated data used in the field of linguistics, has great potential for bootstrapping NLP tools for resource-poor languages. Although IGT is generally very richly annotated, and can be enriched even further (e.g., through structural projection), much of the content is not easily consumable by machines since it remains ``trapped'' in linguistic scholarly documents and in human readable form. In this paper, we describe the expansion of the ODIN resource---a database containing many thousands of instances of IGT for over a thousand languages. We enrich the original IGT data by adding word alignment and syntactic structure. To make the data in ODIN more readily consumable by tool developers and NLP researchers, we adopt and extend a new XML format for IGT, called Xigt. We also develop two packages for manipulating IGT data: one, INTENT, enriches raw IGT automatically, and the other, XigtEdit, is a graphical IGT editor.</p>
-          <a href="/static/bib/xia-et-al-2016.bib"><i class="fas fa-quote-right"></i> bib</a>
         </div>
       </li>
     </ul>
@@ -163,10 +163,16 @@
     </h2>
     <ul class="fa-ul">
       <li>
+          <span class="fa-li">
+            <i class="fas fa-briefcase"></i>
+          </span>
+          <p>Postdoctoral Research Fellow, Nanyang Technological University, February 2019&ndash;</p>
+      </li>
+      <li>
         <span class="fa-li">
           <i class="fas fa-graduation-cap"></i>
         </span>
-        <p>Ph.D. Linguistics, University of Washington, March 2018</p>
+        <p>Ph.D. Linguistics, University of Washington, June 2018</p>
         <p>
           Dissertation:&nbsp;
           <a href="/static/goodman-dissertation.pdf">
@@ -217,7 +223,7 @@
 
   <footer>
     <div class="center">
-      <p>Updated: 2018-06-22</p>
+      <p>Updated: 2019-08-23</p>
       <img src="/static/eclipse-viewing.jpg"
            alt="My family and I viewing the solar eclipse on August 21, 2017."
 	   title="Viewing the total solar eclipse in Corvallis, Oregon." />
