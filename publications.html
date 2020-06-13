@@ -38,15 +38,40 @@
   <section>
     <h2>Publications</h2>
 
+    <h3>2020</h3>
+    <ul class="publications">
+      <li>
+	<span class="author">Michael Wayne Goodman</span>
+	<span class="title">Penman: An Open-Source Library and Tool for AMR Graphs.</span>
+        <span>(to appear) Proceedings of ACL-2020 System Demonstrations</span>
+	<span>2020.</span>
+	<div class="publinks">
+	  <a class="show-modal"><i class="fas fa-file-alt"></i> Abstract</a>
+	  <p class="modal">Abstract Meaning Representation (AMR) (Banarescu et al., 2013) is a framework for semantic dependencies that encodes its rooted and directed acyclic graphs in a format called PENMAN notation. The format is simple enough that users of AMR data often write small scripts or libraries for parsing it into an internal graph representation, but there is enough complexity that these users could benefit from a more sophisticated and well-tested solution. The open-source Python library Penman provides a robust parser, functions for graph inspection and manipulation, and functions for formatting graphs into PENMAN notation. Many functions are also available in a command-line tool, thus extending its utility to non-Python setups.</p>
+        </div>
+      </li>
+      <li>
+	<span class="author">Francis Bond, Luis Morgado da Costa, Michael Wayne Goodman, John P. McCrae, Ahti Lohk.</span>
+	<span class="title">Some Issues with Building a Multilingual Wordnet.</span>
+	<span>Proceedings of the 12th Language Resources and Evaluation Conference (LREC).</span>
+	<span>2020.</span>
+	<div class="publinks">
+          <a href="http://www.lrec-conf.org/proceedings/lrec2020/pdf/2020.lrec-1.390.pdf"><i class="fas fa-file-pdf"></i> Paper</a>
+	  <a class="show-modal"><i class="fas fa-file-alt"></i> Abstract</a>
+	  <p class="modal">In this paper we discuss the experience of bringing together over 40 different wordnets. We introduce some extensions to the GWA wordnet LMF format proposed in Vossen et al. (2016) and look at how this new information can be displayed. Notable extensions include: confidence, corpus frequency, orthographic variants, lexicalized and non-lexicalized synsets and lemmas, new parts of speech, and more. Many of these extensions already exist in multiple wordnets &endash; the challenge was to find a compatible representation. To this end, we introduce a new version of the Open Multilingual Wordnet (Bond and Foster, 2013), that integrates a new set of tools that tests the extensions introduced by this new format, while also ensuring the integrity of the Collaborative Interlingual Index (CILI: Bond et al., 2016), avoiding the same new concept to be introduced through multiple projects.</p>
+          <a href="http://www.lrec-conf.org/proceedings/lrec2020/bib/2020.lrec-1.390.bib"><i class="fas fa-quote-right"></i> bib</a>
+        </div>
+      </li>
+    </ul>
     <h3>2019</h3>
     <ul class="publications">
       <li>
 	<span class="author">Michael Wayne Goodman.</span>
 	<span class="title">AMR Normalization for Fairer Evaluation.</span>
-	<span>(to appear) Proceedings of the 33rd Pacific Asia Conference on Language, Information, and Computation (PACLIC 33).</span>
+	<span>Proceedings of the 33rd Pacific Asia Conference on Language, Information, and Computation (PACLIC 33).</span>
 	<span>2019.</span>
 	<div class="publinks">
-          <a href="https://arxiv.org/pdf/1909.01568.pdf"><i class="fas fa-file-pdf"></i> Paper</a>
+          <a href="https://waseda.repo.nii.ac.jp/?action=repository_uri&item_id=48063&file_id=101&file_no=1"><i class="fas fa-file-pdf"></i> Paper</a>
 	  <a class="show-modal"><i class="fas fa-file-alt"></i> Abstract</a>
           <p class="modal">Abstract Meaning Representation (AMR; Banarescu et al., 2013) encodes the meaning of sentences as a directed graph and Smatch (Cai and Knight, 2013) is the primary metric for evaluating AMR graphs. Smatch, however, is unaware of some meaning-equivalent variations in graph structure allowed by the AMR Specification and gives different scores for AMRs exhibiting these variations. In this paper I propose four normalization methods for helping to ensure that conceptually equivalent AMRs are evaluated as equivalent. Equivalent AMRs with and without normalization can look quite different---comparing a gold corpus to itself with relation reification alone yields a difference of 25 Smatch points, suggesting that the outputs of two systems may not be directly comparable without normalization. The algorithms described in this paper are implemented on top of an existing open-source Python toolkit for AMR and will be released under the same license.</p>
           <a href="/static/bib/goodman-2019.bib"><i class="fas fa-quote-right"></i> bib</a>
